@@ -1,0 +1,34 @@
+ingestion:
+  chunk_size: 500
+  chunk_overlap: 50
+  supported_formats:
+    - pdf
+    - docx
+    - md
+    - txt
+
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  use_reranker: false
+
+llm:
+  provider: anthropic
+  model: claude-sonnet-4-20250514
+  temperature: 0.1
+  max_tokens: 2048
+
+embeddings:
+  model: all-MiniLM-L6-v2
+
+memory:
+  window_size: 5
+  enable_summarization: true
+
+vector_store:
+  persist_directory: ./data/chromadb
+  collection_name: documents
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

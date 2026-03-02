@@ -1,0 +1,33 @@
+# Core
+python-dotenv>=1.0
+pyyaml>=6.0
+
+# LangChain & LLM
+langchain>=0.1.0
+langchain-anthropic>=0.1.0
+langchain-openai>=0.1.0
+langchain-community>=0.0.10
+anthropic>=0.18.0
+openai>=1.10.0
+
+# Vector Store & Embeddings
+chromadb>=0.4.22
+sentence-transformers>=2.3.0
+
+# Document Processing
+pypdf2>=3.0.0
+python-docx>=1.1.0
+markdown>=3.5.0
+
+# Dashboard
+streamlit>=1.30.0
+
+# Evaluation
+ragas>=0.1.0
+
+# Dev
+pytest>=7.0
+pytest-cov>=4.0
+pytest-asyncio>=0.23.0
+ruff>=0.1
+pre-commit>=3.0
