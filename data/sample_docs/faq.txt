@@ -1,0 +1,31 @@
+Frequently Asked Questions (FAQ)
+
+Q: What file formats are supported for document upload?
+A: The Knowledge Assistant supports four file formats: PDF, DOCX (Microsoft Word), Markdown (.md), and plain text (.txt). Each format is parsed using specialized libraries to extract text content and metadata.
+
+Q: How does the chunking process work?
+A: Documents are split into smaller text chunks using a recursive character text splitter. The default chunk size is 500 characters with a 50-character overlap between consecutive chunks. The splitter preserves paragraph boundaries where possible by using a hierarchy of separators: double newlines, single newlines, periods, spaces, and finally character-level splits.
+
+Q: What embedding model is used?
+A: The system uses the all-MiniLM-L6-v2 model from sentence-transformers by default. This model generates 384-dimensional embedding vectors and provides a good balance between quality and speed. The model can be changed in the configuration file.
+
+Q: How does the retrieval process work?
+A: When you ask a question, the system embeds your query using the same embedding model, then searches the ChromaDB vector store for the most similar document chunks. By default, it retrieves the top 5 most similar chunks. An optional cross-encoder re-ranking step can further improve relevance.
+
+Q: What LLM providers are supported?
+A: The system supports Anthropic Claude and OpenAI GPT models. You can switch between providers by changing the configuration or setting environment variables. The default provider is Anthropic Claude.
+
+Q: How does conversation memory work?
+A: The system maintains a sliding window of the last 5 conversation exchanges (user question + assistant answer pairs). This context is included in subsequent queries to enable follow-up questions and multi-turn conversations. Sessions can be saved and loaded for later continuation.
+
+Q: What is RAGAS evaluation?
+A: RAGAS (Retrieval Augmented Generation Assessment) is a framework for evaluating RAG pipelines. The system measures four key metrics: answer relevancy (how well the answer addresses the question), faithfulness (how grounded the answer is in the retrieved context), context precision (how many retrieved chunks are relevant), and context recall (how much of the expected answer is covered by retrieved chunks).
+
+Q: How are citations generated?
+A: Each answer includes citations linking to the specific document chunks that were used as context. Citations include the source file name, page number, chunk index, relevance score, and a text excerpt. A confidence score is computed as the average of all citation relevance scores.
+
+Q: Can I use the system with my own documents?
+A: Yes. Upload your documents through the Streamlit interface or use the API endpoint. The system will automatically parse, chunk, embed, and store your documents for querying.
+
+Q: How do I deploy the application?
+A: The application can be deployed using Docker. Build the Docker image with the provided Dockerfile, configure environment variables for your API keys, and run the container. The Streamlit interface will be available on port 8501.

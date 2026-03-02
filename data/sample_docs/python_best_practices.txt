@@ -1,0 +1,35 @@
+Python Best Practices Guide
+
+Code Style and Formatting
+
+Follow PEP 8 for Python code style. Use 4 spaces for indentation, never tabs. Keep lines under 79 characters for code and 72 for docstrings. Use snake_case for functions and variables, PascalCase for classes, and UPPER_CASE for constants.
+
+Use type hints for all function signatures. Type hints improve code readability, enable static analysis, and help catch bugs early. Example: def calculate_total(items: list[float], tax_rate: float = 0.1) -> float.
+
+Write docstrings for all public modules, classes, and functions. Use Google-style docstrings with Args, Returns, and Raises sections. Keep docstrings concise but informative.
+
+Virtual Environments
+
+Always use virtual environments to isolate project dependencies. Options include venv (built-in), virtualenv, conda, and poetry. Create a requirements.txt or pyproject.toml to pin dependency versions.
+
+Testing
+
+Write unit tests for all public functions using pytest. Aim for at least 80% code coverage. Use pytest fixtures for shared test setup, parametrize for testing multiple inputs, and mock for isolating external dependencies.
+
+Run tests regularly with: pytest tests/ -v --cov=src --cov-report=term-missing
+
+Error Handling
+
+Use specific exception types rather than bare except clauses. Raise exceptions with meaningful messages. Use context managers (with statements) for resource management. Log errors with the logging module instead of print statements.
+
+Project Structure
+
+Organize code into logical packages and modules. Use a src/ layout with __init__.py files. Keep configuration in separate files (YAML or TOML). Separate concerns: data loading, processing, modeling, and API layers.
+
+Performance
+
+Profile before optimizing. Use generators for large datasets. Leverage list comprehensions and built-in functions. Consider numpy for numerical operations and pandas for data manipulation. Use async/await for I/O-bound operations.
+
+Version Control
+
+Use git for version control. Write meaningful commit messages. Create feature branches for new work. Use .gitignore to exclude generated files, virtual environments, and sensitive data like API keys.

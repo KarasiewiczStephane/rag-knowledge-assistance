@@ -1,0 +1,82 @@
+[
+  {
+    "question": "What is machine learning?",
+    "ground_truth": "Machine learning is a subset of artificial intelligence that focuses on building systems that learn from data rather than being explicitly programmed."
+  },
+  {
+    "question": "What are the three main types of machine learning?",
+    "ground_truth": "The three main types are supervised learning, unsupervised learning, and reinforcement learning."
+  },
+  {
+    "question": "What is supervised learning?",
+    "ground_truth": "Supervised learning uses labeled training data to learn a mapping from inputs to outputs. It learns from example input-output pairs and generalizes to unseen data."
+  },
+  {
+    "question": "What is unsupervised learning used for?",
+    "ground_truth": "Unsupervised learning is used for customer segmentation, anomaly detection, dimensionality reduction, and recommendation systems."
+  },
+  {
+    "question": "What is the bias-variance tradeoff?",
+    "ground_truth": "The bias-variance tradeoff is a fundamental concept where high bias means underfitting and high variance means overfitting. Good models balance both."
+  },
+  {
+    "question": "What is PEP 8?",
+    "ground_truth": "PEP 8 is the Python code style guide. It recommends 4 spaces for indentation, lines under 79 characters, snake_case for functions, PascalCase for classes, and UPPER_CASE for constants."
+  },
+  {
+    "question": "What code coverage should Python projects aim for?",
+    "ground_truth": "Python projects should aim for at least 80% code coverage when writing unit tests."
+  },
+  {
+    "question": "What is exploratory data analysis?",
+    "ground_truth": "EDA is the process of investigating data to discover patterns, spot anomalies, and test hypotheses using summary statistics, visualization, correlation analysis, and outlier detection."
+  },
+  {
+    "question": "What are the steps in a data science workflow?",
+    "ground_truth": "The data science process includes problem definition, data collection, exploratory data analysis, data preprocessing, model building, model evaluation, and deployment with monitoring."
+  },
+  {
+    "question": "What file formats does the Knowledge Assistant support?",
+    "ground_truth": "The Knowledge Assistant supports PDF, DOCX, Markdown, and plain text files."
+  },
+  {
+    "question": "How does text chunking work in the system?",
+    "ground_truth": "Documents are split using a recursive character text splitter with a default chunk size of 500 characters and 50-character overlap, preserving paragraph boundaries."
+  },
+  {
+    "question": "What embedding model is used by default?",
+    "ground_truth": "The system uses the all-MiniLM-L6-v2 model from sentence-transformers, which generates 384-dimensional embedding vectors."
+  },
+  {
+    "question": "What is RAGAS evaluation?",
+    "ground_truth": "RAGAS measures four metrics: answer relevancy, faithfulness, context precision, and context recall to evaluate RAG pipeline quality."
+  },
+  {
+    "question": "How does conversation memory work?",
+    "ground_truth": "The system maintains a sliding window of the last 5 conversation exchanges to enable follow-up questions and multi-turn conversations."
+  },
+  {
+    "question": "What is cross-validation?",
+    "ground_truth": "Cross-validation assesses model generalization by dividing data into K subsets, training on K-1 folds, and validating on the remaining fold, repeating K times."
+  },
+  {
+    "question": "What is overfitting?",
+    "ground_truth": "Overfitting occurs when a model learns the training data too well, including noise, and fails to generalize to new data."
+  },
+  {
+    "question": "What API endpoint is used to ask questions?",
+    "ground_truth": "The POST /query endpoint is used to submit questions to the RAG pipeline."
+  },
+  {
+    "question": "How are citations generated in the system?",
+    "ground_truth": "Citations link answers to specific retrieved chunks, including source file, page number, chunk index, relevance score, and a text excerpt."
+  },
+  {
+    "question": "What LLM providers are supported?",
+    "ground_truth": "The system supports Anthropic Claude and OpenAI GPT models, configurable via environment variables or config file."
+  },
+  {
+    "question": "How should errors be handled in Python?",
+    "ground_truth": "Use specific exception types rather than bare except clauses, raise with meaningful messages, use context managers, and log errors with the logging module."
+  }
+]
