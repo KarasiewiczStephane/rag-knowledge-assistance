@@ -1,0 +1,15 @@
+services:
+  rag-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - chromadb_data:/app/data/chromadb
+      - sessions_data:/app/data/sessions
+    env_file:
+      - .env
+    restart: unless-stopped
+
+volumes:
+  chromadb_data:
+  sessions_data:

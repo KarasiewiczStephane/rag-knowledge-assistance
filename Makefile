@@ -18,5 +18,4 @@ run:
 	python -m src.main
 
 docker:
-	docker build -t $(shell basename $(CURDIR)) .
-	docker run -p 8000:8000 $(shell basename $(CURDIR))
+	docker compose up --build
