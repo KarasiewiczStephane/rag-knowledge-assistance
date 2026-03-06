@@ -119,6 +119,81 @@ class AnthropicClient(BaseLLMClient):
         return LLMResponse(content=content, model=self._model, usage=usage)
 
 
+class OllamaClient(BaseLLMClient):
+    """Client for locally-hosted Ollama models (free, no API key needed).
+
+    Args:
+        model: Ollama model name (e.g. "llama3", "mistral", "phi3").
+        temperature: Sampling temperature.
+        max_tokens: Maximum tokens in the response.
+        base_url: Ollama server URL.
+    """
+
+    def __init__(
+        self,
+        model: str = "llama3",
+        temperature: float = 0.1,
+        max_tokens: int = 2048,
+        base_url: str = "http://localhost:11434",
+    ) -> None:
+        self._model = model
+        self._temperature = temperature
+        self._max_tokens = max_tokens
+        self._base_url = base_url.rstrip("/")
+
+    def generate(
+        self,
+        prompt: str,
+        system_prompt: str | None = None,
+    ) -> LLMResponse:
+        """Generate a response using a local Ollama model.
+
+        Args:
+            prompt: User prompt text.
+            system_prompt: Optional system prompt.
+
+        Returns:
+            LLMResponse with the generated answer.
+        """
+        import requests
+
+        messages: list[dict[str, str]] = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
+
+        payload = {
+            "model": self._model,
+            "messages": messages,
+            "stream": False,
+            "options": {
+                "temperature": self._temperature,
+                "num_predict": self._max_tokens,
+            },
+        }
+
+        response = requests.post(
+            f"{self._base_url}/api/chat",
+            json=payload,
+            timeout=120,
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        content = data["message"]["content"]
+        usage = {
+            "input_tokens": data.get("prompt_eval_count", 0),
+            "output_tokens": data.get("eval_count", 0),
+        }
+
+        logger.info(
+            "Ollama response: model=%s, tokens=%s",
+            self._model,
+            usage,
+        )
+        return LLMResponse(content=content, model=self._model, usage=usage)
+
+
 class OpenAIClient(BaseLLMClient):
     """Client for the OpenAI API.
 
@@ -217,6 +292,13 @@ def get_llm_client(config: dict[str, Any]) -> BaseLLMClient:
             model=model or "claude-sonnet-4-20250514",
             temperature=temperature,
             max_tokens=max_tokens,
+        )
+    elif provider == "ollama":
+        return OllamaClient(
+            model=model or "llama3",
+            temperature=temperature,
+            max_tokens=max_tokens,
+            base_url=llm_config.get("base_url", "http://localhost:11434"),
         )
     elif provider == "openai":
         return OpenAIClient(

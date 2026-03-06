@@ -1,6 +1,7 @@
 # Core
 python-dotenv>=1.0
 pyyaml>=6.0
+requests>=2.31.0
 
 # LangChain & LLM
 langchain>=0.1.0

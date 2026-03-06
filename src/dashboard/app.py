@@ -1,8 +1,13 @@
 """Streamlit chat interface for the RAG Knowledge Assistant."""
 
 import logging
+import sys
 import tempfile
 from pathlib import Path
+
+# Ensure project root is on sys.path so `src` package resolves
+# when running via `streamlit run src/dashboard/app.py`
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 import streamlit as st
 
