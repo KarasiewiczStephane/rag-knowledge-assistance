@@ -177,6 +177,11 @@ rag-knowledge-assistance/
 └── requirements.txt
 ```
 
+
+## Author
+
+**Stéphane Karasiewicz** — [skarazdata.com](https://skarazdata.com) | [LinkedIn](https://www.linkedin.com/in/stephane-karasiewicz/)
+
 ## License
 
 MIT
